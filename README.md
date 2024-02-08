@@ -61,14 +61,7 @@ rm -rf prometheus-2.23.0.linux-amd64.tar.gz prometheus-2.19.0.linux-amd64
 
 3. Now we will configure Prometheus to monitor itself using yaml file. Create a prometheus.yml file at /etc/prometheus/prometheus.yml with the below content
 
-global:
-  scrape_interval: 15s
-  external_labels:
-    monitor: 'prometheus'
-scrape_configs:
-  - job_name: 'prometheus'
-    static_configs:
-      - targets: ['localhost:9090']
+
 
 4. Now we want to run the Prometheus as a Service so that in case of server restart service will come automatically.
 
@@ -123,7 +116,9 @@ This script will do the below steps:
 It will create a new user , download the software using wget and then run the node-exporter as a service
 
 sudo useradd --no-create-home node_exporter
+
 wget https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
+
 tar xzf node_exporter-1.0.1.linux-amd64.tar.gz
 sudo cp node_exporter-1.0.1.linux-amd64/node_exporter /usr/local/bin/node_exporter
 rm -rf node_exporter-1.0.1.linux-amd64.tar.gz node_exporter-1.0.1.linux-amd64
@@ -132,6 +127,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable node-exporter
 sudo systemctl start node-exporter
 sudo systemctl status node-exporter
+
 Make sure port 9100is open from your IP to access this url. You should be able to access all the metrics which is coming from this server.
 
 http://3.129.211.10:9100/metrics
@@ -175,6 +171,7 @@ scrape_configs:
         access_key: yourkey
         secret_key: yourkey
         port: 9100
+
 Specify the AWS region and use IAM user API key which has EC2ReadyOnlyAccess . If there is no user available then you can create one and add the below policy.
 
 
@@ -208,7 +205,9 @@ This script will do the below steps:
 It will download the software using wget and then run the grafana as a service
 
 sudo apt-get install -y adduser libfontconfig1
+
 wget https://dl.grafana.com/oss/release/grafana_7.3.4_amd64.deb
+
 sudo dpkg -i grafana_7.3.4_amd64.deb
 sudo systemctl daemon-reload
 sudo systemctl start grafana-server
