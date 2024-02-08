@@ -43,6 +43,7 @@ sudo mkdir /var/lib/prometheus
 2. Download the Prometheus, extract it and put it in /usr/local/bin folder and finally delete the software
 
 wget  https://github.com/prometheus/prometheus/releases/download/v2.23.0/prometheus-2.23.0.linux-amd64.tar.gz
+
 tar -xvf prometheus-2.23.0.linux-amd64.tar.gz
 sudo cp prometheus-2.23.0.linux-amd64/prometheus /usr/local/bin
 sudo cp prometheus-2.23.0.linux-amd64/promtool /usr/local/bin
